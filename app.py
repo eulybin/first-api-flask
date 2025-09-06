@@ -10,18 +10,19 @@ todos: list[dict] = [
 
 
 @app.route("/todos")
-def getTodos():
+def get_todos():
     json_response = jsonify(todos)
     return json_response
 
 
 @app.route("/todos", methods=["POST"])
-def addTodo():
+def add_todo():
+
     return "Todo was added!"
 
 
 @app.route("/todos/<int:position>", methods=["DELETE"])
-def deleteTodo(position):
+def delete_todo(position):
     return f"Todo to delete is: {position}"
 
 
