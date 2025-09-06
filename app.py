@@ -17,13 +17,18 @@ def get_todos():
 
 @app.route("/todos", methods=["POST"])
 def add_todo():
-
-    return "Todo was added!"
+    request_body = request.json
+    print(request_body)
+    todos.append(request_body)
+    json_response = jsonify(todos)
+    return json_response
 
 
 @app.route("/todos/<int:position>", methods=["DELETE"])
 def delete_todo(position):
-    return f"Todo to delete is: {position}"
+    todos.pop(position)
+    json_response = jsonify(todos)
+    return json_response
 
 
 if __name__ == "__main__":
