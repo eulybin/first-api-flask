@@ -1,21 +1,28 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+todos: list[dict] = [
+    {"label": "finish react projects", "done": False},
+    {"label": "walk the dog", "done": False},
+    {"label": "clean my room", "done": False},
+]
 
 
 @app.route("/todos")
 def getTodos():
-    return "Here is a list of all todos."
+    json_response = jsonify(todos)
+    return json_response
 
 
-@app.route("/todos/addTodo", methods=["POST"])
+@app.route("/todos", methods=["POST"])
 def addTodo():
     return "Todo was added!"
 
 
-@app.route("/todos/deleteTodo/<position>", methods=["DELETE"])
+@app.route("/todos/<int:position>", methods=["DELETE"])
 def deleteTodo(position):
-    return "Todo to delete is: " + position
+    return f"Todo to delete is: {position}"
 
 
 if __name__ == "__main__":
