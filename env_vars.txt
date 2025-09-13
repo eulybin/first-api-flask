@@ -1,0 +1,6 @@
+Q: how to use environmental variables in your app?
+A: You need to create the environmental variable using: export api_key=asjkdhas8duahsdha
+
+Then you can import the os module and access your environmental variable.
+
+example: os.environ.get("api_key")
